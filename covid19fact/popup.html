@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+    <meta charset="iso-8859-1">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Mukta:700');
+        /* $bg: #f3f8fa;
+        $white: #fff;
+        $black: #282936; */
+        
+         ::-webkit-scrollbar {
+            width: 10px;
+        }
+        /* Track */
+        
+         ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+        /* Handle */
+        
+         ::-webkit-scrollbar-thumb {
+            background: rgb(210, 218, 223);
+            border-radius: 10px;
+        }
+        /* Handle on hover */
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #5d8699;
+        }
+        
+        body {
+            /* margin-top: 10; */
+            width: 500;
+            /* max-height: 1000px; */
+            background: #2c3e50;
+            /* background: #ECF0F1; */
+            text-align: center;
+            display: inline-block;
+        }
+        
+        #inner {
+            width: 495;
+            min-height: 120px;
+            /* border: 0.5mm solid black; */
+            /* background: rgb(96, 178, 233); */
+            background: white;
+            display: inline-block;
+            margin: auto;
+            margin-top: 0px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        #in_info {
+            color: rgb(22, 37, 51);
+            color: white;
+            /* position: absolute; */
+            width: 100%;
+            left: 0%;
+            top: 0%;
+            display: none;
+            /* border: 0.5mm solid black; */
+            /* background: rgb(96, 178, 233); */
+            background: #2c3e50;
+            margin: auto;
+            text-align: center;
+            /* border-radius: 5px; */
+            /* z-index: -1; */
+        }
+        
+        #fakearticle {
+            background-color: #ecf0f1;
+            color: rgb(14, 18, 77);
+            border-radius: 5px;
+        }
+        
+        .cool {
+            background-color: #2c3e50;
+            box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            /* Green */
+            border: none;
+            border-radius: 5mm;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 13px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+        }
+        
+        .cool:hover {
+            box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+        
+        #container {
+            min-height: 40px;
+            padding: 5px;
+            display: none;
+        }
+        
+        .msg {
+            width: 400;
+            text-align: center;
+            /* border: 0.05mm solid black; */
+            background: #ecf0f1;
+            padding: 2mm;
+            margin: 10px;
+            display: inline-block;
+            vertical-align: middle
+        }
+        
+        .news {
+            width: 400;
+            text-align: center;
+            /* border: 0.01mm solid black; */
+            background: #ecf0f1;
+            border-radius: 5px;
+            padding: 2mm;
+            margin: 10px;
+            display: inline-block;
+            vertical-align: middle
+        }
+        
+        .rate {
+            display: table-cell;
+            width: 340;
+            vertical-align: middle;
+            float: left;
+            font-size: 14;
+        }
+        
+        .perc {
+            font-weight: bold;
+            display: table-cell;
+            padding: 12px;
+            /* border: 1px dashed #c91c1c; */
+            vertical-align: middle;
+            font-size: 13;
+            float: right;
+            width: 20;
+            height: 20;
+            background: rgb(230, 173, 173);
+            border-radius: 10%;
+        }
+        
+        #loader {
+            /* position: absolute; */
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            display: inline-block;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+        
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* Add animation to "page content" */
+        
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            /* remove extra space below image */
+        }
+        
+        .box {
+            position: absolute;
+            top: 10px;
+            left: 12px;
+            width: 100px;
+            padding: 10px;
+            background: white;
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE10+/Edge */
+            user-select: none;
+            /* Standard */
+            /* border: 1px solid black; */
+        }
+        
+        button:focus {
+            outline: 0;
+        }
+        
+        .info {
+            position: absolute;
+            top: 25px;
+            right: 54px;
+            width: 60px;
+            padding: 10px;
+            background: white;
+            /* border-style: outset; */
+            border: none;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+            /* border: 1px solid black; */
+        }
+        
+        .info:hover {
+            position: absolute;
+            top: 25px;
+            right: 54px;
+            width: 65px;
+            padding: 10px;
+            background: white;
+            /* border-style: outset; */
+            border: none;
+            /* border: 1px solid black; */
+        }
+        /* .box.large {
+            height: 300px;
+        }
+        
+        .box.small {
+            height: 100px;
+        } */
+        
+        .news .tooltiptext {
+            padding: 50px;
+            visibility: hidden;
+            min-width: 120px;
+            background-color: rgb(22, 37, 51);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .news:hover .tooltiptext {
+            visibility: visible;
+        }
+        
+        .inner {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+        
+        .header {
+            margin-top: 35px;
+            text-align: center;
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE10+/Edge */
+            user-select: none;
+            /* Standard */
+        }
+        
+        @-webkit-keyframes inner {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+        
+        @keyframes inner {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+    </style>
+</head>
+
+<body id="bod">
+
+    <div id="inner">
+        <div class="box">
+            <img src="logoupdated.png">
+        </div>
+
+        <button class="info" id="info">
+                <img src="info.png">
+        </button>
+
+        <div class="header">
+            <h1>Covid-19 Fact Check</h1>
+        </div>
+        <br>
+
+        <div id="in_info">
+            <br>
+            <h1>Fight against Fake News</h1>
+            <hr>
+            <a>This is a prototype. The articles on this app are collected from  https://newsapi.org. Links to all the articles which are present have been provided along with alternate sources. This app is not liable for any action or decision taken as a result of using it.</a>
+            <hr>
+            <a>To make a query, either select a text from a web page and press the extension icon in the chrome toolbar, or directly enter your query into the text area provided and press refresh!</a>
+            <h3>News Source : https://newsapi.org</h3>
+
+            <a>V. Dheeraj , B. Kowndinya</a>
+
+            <br><br>
+
+        </div>
+
+
+        <br>
+        <textarea rows="5" cols="55" id="fakearticle">
+           
+            </textarea><br><br>
+
+        <!-- <button class="learn-more">
+                    <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Learn More</span>
+                  </button> -->
+
+
+        <!-- <button id="submit" class="cool">Find</button> -->
+
+        <button id="refresh" class="cool">Refresh</button>
+
+        <div id="loadcon">
+
+            <br><br>
+            <a>Please wait ... Your query is being compared against a large database for best results.</a>
+
+            <div id="loader"></div>
+        </div>
+
+        <div id="container">
+
+            <!-- <div class="news">
+                <div class="rate">Demo news</div>
+
+                <div class="perc">92%</div>
+            </div> -->
+
+
+        </div>
+
+
+    </div>
+
+
+
+</body>
+
+<script src="script.js"></script>
+
+</html>
